@@ -84,6 +84,7 @@ export class MTableToolbar extends React.Component {
                 </IconButton>
               </InputAdornment>
             ),
+            disableUnderline: true,
             style: this.props.searchFieldStyle
           }}
         />
