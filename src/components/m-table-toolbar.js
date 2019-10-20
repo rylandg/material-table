@@ -9,8 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { lighten } from '@material-ui/core/styles/colorManipulator';
+import withStyles from '@material-ui/core/styles/withStyles'; import { lighten } from '@material-ui/core/styles/colorManipulator';
 import classNames from 'classnames';
 import { CsvBuilder } from 'filefy';
 import PropTypes, { oneOf } from 'prop-types';
@@ -61,7 +60,7 @@ export class MTableToolbar extends React.Component {
     if (this.props.search) {
       return (
         <TextField
-          className={this.props.searchFieldAlignment === 'left' && this.props.showTitle === false ? null : this.props.classes.searchField}
+          className={this.props.classes.searchField}
           value={this.props.searchText}
           onChange={event => this.props.onSearchChanged(event.target.value)}
           placeholder={localization.searchPlaceholder}
@@ -250,6 +249,7 @@ MTableToolbar.propTypes = {
   onSearchChanged: PropTypes.func.isRequired,
   search: PropTypes.bool.isRequired,
   searchFieldStyle: PropTypes.object,
+  searchStyle: PropTypes.object,
   searchText: PropTypes.string.isRequired,
   selectedRows: PropTypes.array,
   title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
@@ -291,7 +291,11 @@ export const styles = theme => ({
     flex: '0 0 auto'
   },
   searchField: {
-    paddingLeft: theme.spacing(2)
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(0),
+    [theme.breakpoints.down('sm')]: {
+      paddingRight: theme.spacing(2),
+    }
   }
 });
 
